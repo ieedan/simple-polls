@@ -12,7 +12,7 @@
 
 <div class="px-6 py-6 flex justify-center">
 	<div class="max-w-3xl w-full">
-		<h1 class="text-4xl font-bold pb-4 text-center">Polls</h1>
+		<h1 class="text-4xl font-bold pb-4 text-center">My Polls</h1>
 		<form>
 			<search
 				class="flex w-full place-items-center rounded-lg border border-input pr-2
@@ -34,13 +34,11 @@
 				</div>
 			</search>
 		</form>
-		{#if data.polls.length == 0}
+		{#if data.polls.length == 0 && data.search == ""}
 			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
-				<h2 class="text-3xl font-bold">You're not alone</h2>
-				<p class="text-muted-foreground">But no one has thought of this yet...</p>
-				{#if search.trim() != ''}
-					<Button href="/polls/new?title={encodeURIComponent(search)}">Create</Button>
-				{/if}
+				<h2 class="text-3xl font-bold">You haven't created any polls yet</h2>
+				<p class="text-muted-foreground">Start your first poll below</p>
+				<Button href="/polls/new?title={encodeURIComponent(search)}">Create</Button>
 			</div>
 		{:else}
 			<div class="flex flex-col gap-2 py-4">

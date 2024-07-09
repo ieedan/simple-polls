@@ -1,0 +1,18 @@
+{
+  "id": "mig_cq6pma029jvp9to3nlkg",
+  "parentID": "mig_cq6l3f7dgd5bjvgc5s4g",
+  "checksum": "1:0827b6fc3b24be6a99cfbcb2c45dbe0d42a99022a59b41a3747df927ae5d0db0",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "downvotes",
+          "type": "int",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        "table": "polls"
+      }
+    }
+  ]
+}

@@ -13,14 +13,16 @@ const tables = [
       { name: "content", type: "string", defaultValue: "" },
       { name: "upvotes", type: "int", notNull: true, defaultValue: "0" },
       { name: "created_by", type: "string" },
+      { name: "downvotes", type: "int", notNull: true, defaultValue: "0" },
     ],
-    revLinks: [{ column: "poll_id", table: "upvotes" }],
+    revLinks: [{ column: "poll_id", table: "votes" }],
   },
   {
-    name: "upvotes",
+    name: "votes",
     columns: [
       { name: "poll_id", type: "link", link: { table: "polls" } },
-      { name: "upvoted_by", type: "string" },
+      { name: "created_by", type: "string" },
+      { name: "type", type: "text" },
     ],
   },
 ] as const;
@@ -31,12 +33,12 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Polls = InferredTypes["polls"];
 export type PollsRecord = Polls & XataRecord;
 
-export type Upvotes = InferredTypes["upvotes"];
-export type UpvotesRecord = Upvotes & XataRecord;
+export type Votes = InferredTypes["votes"];
+export type VotesRecord = Votes & XataRecord;
 
 export type DatabaseSchema = {
   polls: PollsRecord;
-  upvotes: UpvotesRecord;
+  votes: VotesRecord;
 };
 
 const DatabaseClient = buildClient();

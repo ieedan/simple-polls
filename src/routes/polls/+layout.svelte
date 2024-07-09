@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+
+	export let data;
 </script>
 
 <header class="border-b border-border px-8 py-4">
@@ -14,6 +16,15 @@
 				>
 					Polls
 				</a>
+				{#if data.session}
+					<a
+						href="/polls/my-polls"
+						class="text-muted-foreground data-[active=true]:text-primary"
+						data-active={$page.url.pathname == '/polls/my-polls'}
+					>
+						My Polls
+					</a>
+				{/if}
 			</nav>
 		</div>
 	</div>

@@ -30,7 +30,7 @@
 						</Avatar.Fallback>
 					</Avatar.Root>
 				</DropdownMenu.Trigger>
-				<DropdownMenu.Content align="start" alignOffset={-14} sideOffset={5}>
+				<DropdownMenu.Content sideOffset={5}>
 				  <DropdownMenu.Group>
 					<DropdownMenu.Item>My Polls</DropdownMenu.Item>
 					<DropdownMenu.Item>My UpVotes</DropdownMenu.Item>

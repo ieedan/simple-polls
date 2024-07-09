@@ -4,7 +4,7 @@ export const load = async () => {
 	const polls = await db
 		.selectFrom('polls')
 		.selectAll()
-		.limit(5)
+		.limit(10)
 		.orderBy('polls.upvotes', 'desc')
 		.execute();
 
