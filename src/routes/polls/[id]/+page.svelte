@@ -3,6 +3,7 @@
 	import ThickArrowUp from 'svelte-radix/ThickArrowUp.svelte';
 	import ThickArrowDown from 'svelte-radix/ThickArrowDown.svelte';
 	import { superForm } from 'sveltekit-superforms';
+	import { page } from '$app/stores';
 
 	export let data;
 
@@ -26,6 +27,7 @@
 				class="flex gap-2"
 				bind:pressed={$upvoteForm.upvoted}
 				onPressedChange={(upvoted) => {
+					if (!$page.data.session) return; 
 					if (upvoted) {
 						if ($downvoteForm.downvoted) {
 							$downvoteForm.downvoted = false
@@ -51,6 +53,7 @@
 				class="flex gap-2"
 				bind:pressed={$downvoteForm.downvoted}
 				onPressedChange={(downvoted) => {
+					if (!$page.data.session) return; 
 					if (downvoted) {
 						if ($upvoteForm.upvoted) {
 							$upvoteForm.upvoted = false

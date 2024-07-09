@@ -92,7 +92,13 @@ export const load = async ({ params, locals }) => {
 };
 
 export const actions = {
-	upvote: async ({ request }) => {
+	upvote: async ({ request, locals, url }) => {
+		const session = await locals.auth();
+
+		if (!session) {
+			throw redirect(303, `/signin?redirectTo=${encodeURIComponent(url.pathname + url.search)}`);
+		}
+
 		const form = await superValidate(request, zod(upvote));
 
 		if (!form.valid) {
@@ -173,7 +179,13 @@ export const actions = {
 			}
 		}
 	},
-	downvote: async ({ request }) => {
+	downvote: async ({ request, locals, url }) => {
+		const session = await locals.auth();
+
+		if (!session) {
+			throw redirect(303, `/signin?redirectTo=${encodeURIComponent(url.pathname + url.search)}`);
+		}
+
 		const form = await superValidate(request, zod(downvote));
 
 		if (!form.valid) {
