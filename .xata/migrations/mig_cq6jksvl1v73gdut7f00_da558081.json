@@ -1,0 +1,17 @@
+{
+  "id": "mig_cq6jksvl1v73gdut7f00",
+  "parentID": "mig_cq6jkgfl1v73gdut7ev0",
+  "checksum": "1:da558081e40ebd4d6e520d87b38cfc8c42057957d291fde00feb8178b63a2119",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "content",
+          "type": "string",
+          "defaultValue": ""
+        },
+        "table": "polls"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "mig_cq6l2hophjmnfer5f7dg",
+  "parentID": "mig_cq6l257dgd5bjvgc5s2g",
+  "checksum": "1:e38bd479867ad4246dbc69e868c2d9aacf1d5587f17b1b93b064bdfa184c0992",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "poll_id",
+          "type": "link",
+          "link": {
+            "table": "polls"
+          }
+        },
+        "table": "upvotes"
+      }
+    }
+  ]
+}

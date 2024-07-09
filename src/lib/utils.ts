@@ -60,3 +60,13 @@ export const flyAndScale = (
 		easing: cubicOut
 	};
 };
+
+export const rand = (min: number, max: number): number => {
+	return Math.floor(((max - min) * Math.random()) + min);
+}
+
+export const wordCount = (str: string) => {
+	str = str.trim();
+
+	return str.split(" ").length;
+}
