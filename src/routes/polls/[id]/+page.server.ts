@@ -21,6 +21,14 @@ export const load = async ({ params, locals }) => {
 		throw redirect(302, '/polls');
 	}
 
+    // because why does it not just come out as a number
+	const upvotes = poll.upvotes;
+
+    // Shouldn't ever happen just here for TS
+	if (typeof upvotes != 'number') {
+		throw redirect(302, '/polls');
+	}
+
 	const session = await locals.auth();
 
 	let upVoted = false;
@@ -44,7 +52,7 @@ export const load = async ({ params, locals }) => {
 	);
 
 	return {
-		poll,
+		poll: { ...poll, upvotes },
 		upVoted,
 		form
 	};
@@ -63,7 +71,8 @@ export const actions = {
 		if (form.data.upvoted) {
 			const upvoteId = await db
 				.insertInto('upvotes')
-				.values({ upvoted_by: form.data.upvotedBy, poll_id: form.data.pollId })
+                // add the blank id or TS yells at you
+				.values({ id: "", upvoted_by: form.data.upvotedBy, poll_id: form.data.pollId })
 				.returning('id')
 				.executeTakeFirst();
 
