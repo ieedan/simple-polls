@@ -14,8 +14,12 @@ const tables = [
       { name: "upvotes", type: "int", notNull: true, defaultValue: "0" },
       { name: "created_by", type: "string" },
       { name: "downvotes", type: "int", notNull: true, defaultValue: "0" },
+      { name: "views", type: "int", notNull: true, defaultValue: "0" },
     ],
-    revLinks: [{ column: "poll_id", table: "votes" }],
+    revLinks: [
+      { column: "poll_id", table: "votes" },
+      { column: "poll_id", table: "views" },
+    ],
   },
   {
     name: "votes",
@@ -23,6 +27,13 @@ const tables = [
       { name: "poll_id", type: "link", link: { table: "polls" } },
       { name: "created_by", type: "string" },
       { name: "type", type: "text" },
+    ],
+  },
+  {
+    name: "views",
+    columns: [
+      { name: "viewed_by", type: "text" },
+      { name: "poll_id", type: "link", link: { table: "polls" } },
     ],
   },
 ] as const;
@@ -36,9 +47,13 @@ export type PollsRecord = Polls & XataRecord;
 export type Votes = InferredTypes["votes"];
 export type VotesRecord = Votes & XataRecord;
 
+export type Views = InferredTypes["views"];
+export type ViewsRecord = Views & XataRecord;
+
 export type DatabaseSchema = {
   polls: PollsRecord;
   votes: VotesRecord;
+  views: ViewsRecord;
 };
 
 const DatabaseClient = buildClient();

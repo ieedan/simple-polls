@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { ArrowRight } from 'svelte-radix';
+	import { ArrowRight, ThickArrowDown } from 'svelte-radix';
 	import ThickArrowUp from 'svelte-radix/ThickArrowUp.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { scale } from 'svelte/transition';
@@ -51,12 +51,20 @@
 								{poll.content}
 							</Card.Title>
 							<Card.Content class="p-0">
-								<span
-									class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground"
-								>
-									<ThickArrowUp class="size-4" />
-									{poll.upvotes}
-								</span>
+								<div class="flex place-items-center gap-2">
+									<span
+										class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground"
+									>
+										<ThickArrowUp class="size-4" />
+										{poll.upvotes}
+									</span>
+									<span
+										class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground"
+									>
+										<ThickArrowDown class="size-4" />
+										{poll.downvotes}
+									</span>
+								</div>
 							</Card.Content>
 						</Card.Root>
 					</a>

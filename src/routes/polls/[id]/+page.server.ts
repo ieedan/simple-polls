@@ -18,11 +18,21 @@ const downvote = z.object({
 });
 
 export const load = async ({ params, locals }) => {
+	const session = await locals.auth();
+
 	const poll = await db
 		.selectFrom('polls')
 		.selectAll()
-		.where('id', '=', params.id)
+		.where('polls.id', '=', params.id)
 		.executeTakeFirst();
+
+	await db
+		.updateTable('polls')
+		.set((eb) => ({
+			views: eb('views', '+', 1)
+		}))
+		.where('polls.id', '=', params.id)
+		.execute();
 
 	if (!poll) {
 		throw redirect(302, '/polls');
@@ -43,8 +53,6 @@ export const load = async ({ params, locals }) => {
 	if (typeof downvotes != 'number') {
 		throw redirect(302, '/polls');
 	}
-
-	const session = await locals.auth();
 
 	let upVoted = false;
 	let downVoted = false;
@@ -144,7 +152,8 @@ export const actions = {
 						.execute();
 				}
 			} else if (currentVoteType.type == VoteType.DOWN) {
-				if (form.data.upvoted) { // upvoting
+				if (form.data.upvoted) {
+					// upvoting
 					await db
 						.updateTable('votes')
 						.set({ type: VoteType.UP })
@@ -156,7 +165,7 @@ export const actions = {
 						.updateTable('polls')
 						.set((eb) => ({
 							downvotes: eb('downvotes', '-', 1),
-							upvotes: eb('upvotes', '+', 1),
+							upvotes: eb('upvotes', '+', 1)
 						}))
 						.where('polls.id', '=', form.data.pollId)
 						.execute();
@@ -224,7 +233,8 @@ export const actions = {
 						.execute();
 				}
 			} else if (currentVoteType.type == VoteType.UP) {
-				if (form.data.downvoted) { // downvoting
+				if (form.data.downvoted) {
+					// downvoting
 					await db
 						.updateTable('votes')
 						.set({ type: VoteType.DOWN })
@@ -236,7 +246,7 @@ export const actions = {
 						.updateTable('polls')
 						.set((eb) => ({
 							downvotes: eb('downvotes', '+', 1),
-							upvotes: eb('upvotes', '-', 1),
+							upvotes: eb('upvotes', '-', 1)
 						}))
 						.where('polls.id', '=', form.data.pollId)
 						.execute();

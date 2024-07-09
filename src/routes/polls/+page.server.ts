@@ -7,6 +7,7 @@ export const load = async ({ url }) => {
 		.selectFrom('polls')
 		.selectAll()
 		.where('polls.content', 'ilike', `%${search}%`)
+		.orderBy("polls.views", 'desc')
 		.orderBy('polls.upvotes', 'desc')
 		.limit(100)
 		.execute();

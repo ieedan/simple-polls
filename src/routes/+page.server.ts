@@ -5,6 +5,7 @@ export const load = async () => {
 		.selectFrom('polls')
 		.selectAll()
 		.limit(10)
+		.orderBy('polls.views', 'desc')
 		.orderBy('polls.upvotes', 'desc')
 		.execute();
 
