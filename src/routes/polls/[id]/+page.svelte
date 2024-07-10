@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import type { NodeJSTimeout } from '$lib/types.js';
 
 	const POLLING_INTERVAL = 10000;
 
@@ -14,8 +15,7 @@
 	const { form: upvoteForm, enhance: upvoteEnhance } = superForm(data.upvoteForm);
 	const { form: downvoteForm, enhance: downvoteEnhance } = superForm(data.downvoteForm);
 
-	// eslint-disable-next-line no-undef
-	let pollTimeout: NodeJS.Timeout;
+	let pollTimeout: NodeJSTimeout;
 
 	const getStats = async () => {
 		clearTimeout(pollTimeout);
