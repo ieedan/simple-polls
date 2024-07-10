@@ -1,7 +1,8 @@
 import type { Provider } from '@auth/sveltekit/providers';
 import GitHub from '@auth/sveltekit/providers/github';
+import google from '@auth/sveltekit/providers/google';
 
-export const providers: Provider[] = [GitHub];
+export const providers: Provider[] = [GitHub, google];
 
 export const providerMap = providers.map((provider) => {
 	if (typeof provider === 'function') {

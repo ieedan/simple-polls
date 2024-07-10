@@ -2,6 +2,7 @@
 	import { providerMap } from '$lib/auth/providers';
 	import { SignIn } from '@auth/sveltekit/components';
 	import { GithubLogo } from 'svelte-radix';
+	import GoogleSVG from '$lib/assets/google.svg';
 </script>
 
 <div class="flex h-svh place-items-center justify-center">
@@ -16,6 +17,8 @@
 				>
 					{#if provider.name == 'GitHub'}
 						<GithubLogo class="size-5" />
+					{:else if provider.name == 'Google'}
+						<img src={GoogleSVG} alt="Google logo" class="size-5"/>
 					{/if}
 					Continue with {provider.name}
 				</div>
