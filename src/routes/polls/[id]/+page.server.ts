@@ -1,4 +1,5 @@
-import { db, VoteType } from '$lib/db/xata-util.js';
+import { VoteType } from '$lib/db/types';
+import { db } from '$lib/db/xata-util.js';
 import { redirect } from '@sveltejs/kit';
 import { fail, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -25,6 +26,8 @@ export const load = async ({ params, locals }) => {
 		.selectAll()
 		.where('polls.id', '=', params.id)
 		.executeTakeFirst();
+
+	console.log(params.id)
 
 	await db
 		.updateTable('polls')

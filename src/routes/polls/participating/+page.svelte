@@ -1,11 +1,12 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { ArrowRight, ThickArrowDown } from 'svelte-radix';
+	import { ArrowRight } from 'svelte-radix';
 	import ThickArrowUp from 'svelte-radix/ThickArrowUp.svelte';
+	import ThickArrowDown from 'svelte-radix/ThickArrowDown.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { scale } from 'svelte/transition';
 	import { page } from '$app/stores';
-	import { VoteType } from '$lib/db/types';
+	import { VoteType } from '$lib/db/types.js';
 
 	export let data;
 
@@ -13,12 +14,12 @@
 </script>
 
 <svelte:head>
-	<title>Simple Polls - Polls</title>
+	<title>Simple Polls - Participating</title>
 </svelte:head>
 
 <div class="flex justify-center px-6 py-6">
 	<div class="w-full max-w-3xl">
-		<h1 class="pb-4 text-center text-4xl font-bold">Polls</h1>
+		<h1 class="pb-4 text-center text-4xl font-bold">Participating</h1>
 		<form
 			class="flex place-items-center gap-2"
 			on:submit|preventDefault={() => {
@@ -53,13 +54,16 @@
 				Create
 			</Button>
 		</form>
-		{#if data.polls.length == 0}
+		{#if data.polls.length == 0 && data.search == ''}
 			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
-				<h2 class="text-3xl font-bold">Nothing matched your search</h2>
-				<p class="text-muted-foreground">No one has thought of this yet.</p>
-				{#if search.trim() != ''}
-					<Button href="/polls/new?title={encodeURIComponent(search)}">Create</Button>
-				{/if}
+				<h2 class="text-3xl font-bold">You aren't participating in any polls yet</h2>
+				<p class="text-muted-foreground">To start participating you can check out existing polls.</p>
+				<Button href="/polls">See Polls</Button>
+			</div>
+		{:else if data.polls.length == 0}
+			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
+				<h2 class="text-3xl font-bold">No polls matched your search</h2>
+				<p class="text-muted-foreground">They may be out there you just haven't participated in them yet.</p>
 			</div>
 		{:else}
 			<div class="flex flex-col gap-2 py-4">

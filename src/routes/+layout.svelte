@@ -5,7 +5,7 @@
 	import '../app.css';
 	import { ModeWatcher } from 'mode-watcher';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { SignIn, SignOut } from '@auth/sveltekit/components';
+	import { SignOut } from '@auth/sveltekit/components';
 	import { page } from '$app/stores';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';

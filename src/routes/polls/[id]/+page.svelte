@@ -7,7 +7,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
-	const POLLING_INTERVAL = 1000;
+	const POLLING_INTERVAL = 10000;
 
 	export let data;
 
@@ -18,8 +18,6 @@
 
 	const getStats = async () => {
 		clearTimeout(pollTimeout);
-
-		console.log('polling');
 
 		const stats = await fetch(`/api/polls/${data.poll.id}/stats`).then((a) => a.json());
 
@@ -45,7 +43,7 @@
 </script>
 
 <svelte:head>
-	<title>Poll | {data.poll.content}</title>
+	<title>Simple Polls - Polls | {data.poll.content}</title>
 </svelte:head>
 
 <section class="flex h-svh flex-col place-items-center justify-center gap-4 px-6">

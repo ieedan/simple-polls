@@ -5,16 +5,28 @@
 	import ThickArrowDown from 'svelte-radix/ThickArrowDown.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { scale } from 'svelte/transition';
+	import { page } from '$app/stores';
+	import { VoteType } from '$lib/db/types.js';
 
 	export let data;
 
 	let search = data.search;
 </script>
 
+<svelte:head>
+	<title>Simple Polls - My Polls</title>
+</svelte:head>
+
 <div class="flex justify-center px-6 py-6">
 	<div class="w-full max-w-3xl">
 		<h1 class="pb-4 text-center text-4xl font-bold">My Polls</h1>
-		<form>
+		<form
+			class="flex place-items-center gap-2"
+			on:submit|preventDefault={() => {
+				$page.url.searchParams.set('search', search);
+				window.location.href = $page.url.href;
+			}}
+		>
 			<search
 				class="flex w-full place-items-center rounded-lg border border-input pr-2
                 text-foreground shadow-sm transition-all focus-within:ring-1 focus-within:ring-ring"
@@ -26,19 +38,32 @@
 					class="w-full min-w-0 border-0 bg-transparent px-2 py-2 outline-none
                      placeholder:text-muted-foreground focus:outline-none"
 				/>
-				<div class="size-5">
+				<button
+					class="size-5 hover:cursor-default data-[hover=true]:hover:cursor-pointer"
+					type="submit"
+					data-hover={search.trim() != ''}
+				>
 					{#if search.trim() != ''}
 						<div transition:scale={{ duration: 150, start: 0.5 }}>
 							<ArrowRight class="size-5" />
 						</div>
 					{/if}
-				</div>
+				</button>
 			</search>
+			<Button size="lg" class="px-4" href="/polls/new?title={encodeURIComponent(search)}">
+				Create
+			</Button>
 		</form>
 		{#if data.polls.length == 0 && data.search == ''}
 			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
 				<h2 class="text-3xl font-bold">You haven't created any polls yet</h2>
-				<p class="text-muted-foreground">Start your first poll below</p>
+				<p class="text-muted-foreground">Start your first poll below.</p>
+				<Button href="/polls/new?title={encodeURIComponent(search)}">Create</Button>
+			</div>
+		{:else if data.polls.length == 0}
+			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
+				<h2 class="text-3xl font-bold">You haven't thought of this yet</h2>
+				<p class="text-muted-foreground">Start a new poll below.</p>
 				<Button href="/polls/new?title={encodeURIComponent(search)}">Create</Button>
 			</div>
 		{:else}
@@ -52,13 +77,15 @@
 							<Card.Content class="p-0">
 								<div class="flex place-items-center gap-2">
 									<span
-										class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground"
+										data-voted={poll.voteType == VoteType.UP}
+										class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground data-[voted=true]:text-primary"
 									>
 										<ThickArrowUp class="size-4" />
 										{poll.upvotes}
 									</span>
 									<span
-										class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground"
+										data-voted={poll.voteType == VoteType.DOWN}
+										class="flex place-items-center gap-1 font-serif text-sm text-muted-foreground data-[voted=true]:text-primary"
 									>
 										<ThickArrowDown class="size-4" />
 										{poll.downvotes}

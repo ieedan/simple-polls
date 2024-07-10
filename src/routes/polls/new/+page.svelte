@@ -9,6 +9,10 @@
 	const { form, enhance } = superForm(data.form);
 </script>
 
+<svelte:head>
+	<title>Simple Polls - New Poll</title>
+</svelte:head>
+
 <div class="flex h-svh flex-col place-items-center justify-center gap-10 px-6">
 	{#if $form.content.trim() != ''}
 		<h1 class="min-h-[72px] max-w-3xl text-center text-5xl font-bold sm:text-7xl">

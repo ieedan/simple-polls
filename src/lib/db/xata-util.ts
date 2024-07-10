@@ -10,8 +10,3 @@ const xata = getXataClient();
 export const db = new Kysely<Model<DatabaseSchema>>({
 	dialect: new XataDialect({ xata })
 });
-
-export class VoteType {
-	static UP = "UP";
-	static DOWN = "DOWN"
-}

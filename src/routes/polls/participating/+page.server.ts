@@ -1,29 +1,30 @@
-import { db } from "$lib/db/xata-util";
-import { redirect } from "@sveltejs/kit";
+import { db } from '$lib/db/xata-util.js';
+import { redirect } from '@sveltejs/kit';
 
 export const load = async ({ locals, url }) => {
-    const search = url.searchParams.get('search') ?? '';
-
 	const session = await locals.auth();
 
-    if (!session) {
+	if (!session) {
 		throw redirect(303, `/signin?redirectTo=${encodeURIComponent(url.pathname + url.search)}`);
 	}
+
+	const search = url.searchParams.get('search') ?? '';
 
 	const polls = await db
 		.selectFrom('polls')
 		.select(['polls.id','polls.content','polls.downvotes', 'polls.upvotes'])
-        .where('polls.created_by', '=', session.user.userId)
-        .where('polls.content', 'ilike', `%${search}%`)
-        .leftJoin('votes', (join) =>
+		.where('polls.content', 'ilike', `%${search}%`)
+		.innerJoin('votes', (join) =>
 			join.onRef('votes.poll_id', '=', 'polls.id').on('votes.created_by', '=', session.user.userId)
 		)
-        .select('votes.type as voteType')
+		.select('votes.type as voteType')
+		.orderBy('polls.views', 'desc')
 		.orderBy('polls.upvotes', 'desc')
+		.limit(100)
 		.execute();
 
-    return {
-        polls,
-        search
-    }
+	return {
+		search,
+		polls
+	};
 };
