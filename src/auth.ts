@@ -17,6 +17,7 @@ declare module '@auth/sveltekit' {
 
 export const { handle, signIn, signOut } = SvelteKitAuth({
 	providers,
+	trustHost: true,
 	pages: {
 		signIn: '/signin'
 	},
