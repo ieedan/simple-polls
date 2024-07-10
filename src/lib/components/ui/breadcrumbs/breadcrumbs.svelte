@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
-    import Slash from "svelte-radix/Slash.svelte";
+	import Slash from 'svelte-radix/Slash.svelte';
 
 	/** Can be used to exclude a path prefix EX: excludePrefix == '/dashboard' => route == '/dashboard/settings' => route == '/settings'*/
 	export let excludePrefix: string | undefined = undefined;
@@ -62,9 +62,9 @@
 			<Breadcrumb.Item>
 				<Breadcrumb.Link {href}>{name}</Breadcrumb.Link>
 			</Breadcrumb.Item>
-			<Breadcrumb.Separator >
-                <Slash tabindex="-1" />
-            </Breadcrumb.Separator>
+			<Breadcrumb.Separator>
+				<Slash tabindex="-1" />
+			</Breadcrumb.Separator>
 		{/each}
 	</Breadcrumb.List>
 </Breadcrumb.Root>

@@ -27,7 +27,7 @@ export const load = async ({ params, locals }) => {
 		.where('polls.id', '=', params.id)
 		.executeTakeFirst();
 
-	console.log(params.id)
+	console.log(params.id);
 
 	await db
 		.updateTable('polls')

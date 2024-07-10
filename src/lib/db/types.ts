@@ -1,4 +1,4 @@
 export class VoteType {
-	static UP = "UP";
-	static DOWN = "DOWN"
+	static UP = 'UP';
+	static DOWN = 'DOWN';
 }

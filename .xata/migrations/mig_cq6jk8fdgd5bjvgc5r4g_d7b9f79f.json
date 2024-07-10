@@ -1,11 +1,11 @@
 {
-  "id": "mig_cq6jk8fdgd5bjvgc5r4g",
-  "checksum": "1:d7b9f79f165783c27a5c57842d1a1b291aae8f51292a3f82f4a1e374d966e4f4",
-  "operations": [
-    {
-      "addTable": {
-        "table": "polls"
-      }
-    }
-  ]
+	"id": "mig_cq6jk8fdgd5bjvgc5r4g",
+	"checksum": "1:d7b9f79f165783c27a5c57842d1a1b291aae8f51292a3f82f4a1e374d966e4f4",
+	"operations": [
+		{
+			"addTable": {
+				"table": "polls"
+			}
+		}
+	]
 }

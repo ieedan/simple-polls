@@ -5,21 +5,22 @@ export const GET = async ({ params }) => {
 	const stats = await db
 		.selectFrom('polls')
 		.select(['upvotes', 'downvotes'])
-		.where('polls.id', '=', params.id).executeTakeFirst();
+		.where('polls.id', '=', params.id)
+		.executeTakeFirst();
 
-    const downvotes = stats?.downvotes;
+	const downvotes = stats?.downvotes;
 
-    // this shouldn't ever happen
-    if (typeof downvotes != "number") {
-        throw new Error("incorrect type received");
-    }
+	// this shouldn't ever happen
+	if (typeof downvotes != 'number') {
+		throw new Error('incorrect type received');
+	}
 
-    const upvotes = stats?.upvotes;
+	const upvotes = stats?.upvotes;
 
-    // this shouldn't ever happen
-    if (typeof upvotes != "number") {
-        throw new Error("incorrect type received");
-    }
+	// this shouldn't ever happen
+	if (typeof upvotes != 'number') {
+		throw new Error('incorrect type received');
+	}
 
-    return json({ upvotes, downvotes })
+	return json({ upvotes, downvotes });
 };

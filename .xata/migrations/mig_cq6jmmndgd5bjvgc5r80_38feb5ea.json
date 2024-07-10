@@ -1,18 +1,18 @@
 {
-  "id": "mig_cq6jmmndgd5bjvgc5r80",
-  "parentID": "mig_cq6jm9nl1v73gdut7f10",
-  "checksum": "1:38feb5ea1036527288f2e61910a60e0526056b4513d0afb948a48c1fbf4bc7ca",
-  "operations": [
-    {
-      "addColumn": {
-        "column": {
-          "name": "upvotes",
-          "type": "int",
-          "notNull": true,
-          "defaultValue": "0"
-        },
-        "table": "polls"
-      }
-    }
-  ]
+	"id": "mig_cq6jmmndgd5bjvgc5r80",
+	"parentID": "mig_cq6jm9nl1v73gdut7f10",
+	"checksum": "1:38feb5ea1036527288f2e61910a60e0526056b4513d0afb948a48c1fbf4bc7ca",
+	"operations": [
+		{
+			"addColumn": {
+				"column": {
+					"name": "upvotes",
+					"type": "int",
+					"notNull": true,
+					"defaultValue": "0"
+				},
+				"table": "polls"
+			}
+		}
+	]
 }

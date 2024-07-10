@@ -1,14 +1,14 @@
 {
-  "id": "mig_cq6pmrrrvs6h2a8dm2m0",
-  "parentID": "mig_cq6pme029jvp9to3nllg",
-  "checksum": "1:faca42b4c8c311e06ef8089bc6a696104910d594a16ba39a23c0745f32579c12",
-  "operations": [
-    {
-      "renameColumn": {
-        "newName": "created_by",
-        "oldName": "upvoted_by",
-        "table": "votes"
-      }
-    }
-  ]
+	"id": "mig_cq6pmrrrvs6h2a8dm2m0",
+	"parentID": "mig_cq6pme029jvp9to3nllg",
+	"checksum": "1:faca42b4c8c311e06ef8089bc6a696104910d594a16ba39a23c0745f32579c12",
+	"operations": [
+		{
+			"renameColumn": {
+				"newName": "created_by",
+				"oldName": "upvoted_by",
+				"table": "votes"
+			}
+		}
+	]
 }

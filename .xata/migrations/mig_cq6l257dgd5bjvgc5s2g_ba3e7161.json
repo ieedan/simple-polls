@@ -1,12 +1,12 @@
 {
-  "id": "mig_cq6l257dgd5bjvgc5s2g",
-  "parentID": "mig_cq6jmmndgd5bjvgc5r80",
-  "checksum": "1:ba3e71613e848b74ce1aad664cf8de162cfbbf395c6d567da18192d86a333a0f",
-  "operations": [
-    {
-      "addTable": {
-        "table": "upvotes"
-      }
-    }
-  ]
+	"id": "mig_cq6l257dgd5bjvgc5s2g",
+	"parentID": "mig_cq6jmmndgd5bjvgc5r80",
+	"checksum": "1:ba3e71613e848b74ce1aad664cf8de162cfbbf395c6d567da18192d86a333a0f",
+	"operations": [
+		{
+			"addTable": {
+				"table": "upvotes"
+			}
+		}
+	]
 }

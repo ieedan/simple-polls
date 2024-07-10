@@ -1,12 +1,12 @@
 {
-  "id": "mig_cq6jkgfl1v73gdut7ev0",
-  "parentID": "mig_cq6jkcvdgd5bjvgc5r5g",
-  "checksum": "1:7122c96cde95fb33320835de36ce8dfd84ad2396119d5a9ad68edaf333e998b8",
-  "operations": [
-    {
-      "addTable": {
-        "table": "polls"
-      }
-    }
-  ]
+	"id": "mig_cq6jkgfl1v73gdut7ev0",
+	"parentID": "mig_cq6jkcvdgd5bjvgc5r5g",
+	"checksum": "1:7122c96cde95fb33320835de36ce8dfd84ad2396119d5a9ad68edaf333e998b8",
+	"operations": [
+		{
+			"addTable": {
+				"table": "polls"
+			}
+		}
+	]
 }

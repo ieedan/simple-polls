@@ -7,7 +7,7 @@
 <header class="border-b border-border px-8 py-4">
 	<div class="flex max-w-7xl place-items-center">
 		<div class="flex place-items-center gap-8">
-			<a href="/" class="font-bold text-lg"> Simple Polls </a>
+			<a href="/" class="text-lg font-bold"> Simple Polls </a>
 			<nav class="flex place-items-center gap-6">
 				<a
 					href="/polls"

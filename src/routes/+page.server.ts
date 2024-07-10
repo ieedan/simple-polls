@@ -7,7 +7,7 @@ export const load = async ({ locals }) => {
 
 	const polls = await db
 		.selectFrom('polls')
-		.select(['polls.id','polls.content','polls.downvotes', 'polls.upvotes'])
+		.select(['polls.id', 'polls.content', 'polls.downvotes', 'polls.upvotes'])
 		.where('polls.created_by', '!=', userId)
 		.leftJoin('votes', (join) =>
 			join.onRef('votes.poll_id', '=', 'polls.id').on('votes.created_by', '=', userId)

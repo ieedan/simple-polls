@@ -1,16 +1,16 @@
 {
-  "id": "mig_cq6l3f7dgd5bjvgc5s4g",
-  "parentID": "mig_cq6l307dgd5bjvgc5s3g",
-  "checksum": "1:7889ced07b9b97d225df4edd05c8fbabc602067674a03fe756b276cec96e934e",
-  "operations": [
-    {
-      "addColumn": {
-        "column": {
-          "name": "created_by",
-          "type": "string"
-        },
-        "table": "polls"
-      }
-    }
-  ]
+	"id": "mig_cq6l3f7dgd5bjvgc5s4g",
+	"parentID": "mig_cq6l307dgd5bjvgc5s3g",
+	"checksum": "1:7889ced07b9b97d225df4edd05c8fbabc602067674a03fe756b276cec96e934e",
+	"operations": [
+		{
+			"addColumn": {
+				"column": {
+					"name": "created_by",
+					"type": "string"
+				},
+				"table": "polls"
+			}
+		}
+	]
 }

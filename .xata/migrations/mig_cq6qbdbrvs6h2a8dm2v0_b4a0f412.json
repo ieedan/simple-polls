@@ -1,16 +1,16 @@
 {
-  "id": "mig_cq6qbdbrvs6h2a8dm2v0",
-  "parentID": "mig_cq6qb73rvs6h2a8dm2u0",
-  "checksum": "1:b4a0f4124dc05f0f052ca43740b5c4c5bf5f1e4743cc51015c387fe6eca53e29",
-  "operations": [
-    {
-      "addColumn": {
-        "column": {
-          "name": "viewed_by",
-          "type": "text"
-        },
-        "table": "views"
-      }
-    }
-  ]
+	"id": "mig_cq6qbdbrvs6h2a8dm2v0",
+	"parentID": "mig_cq6qb73rvs6h2a8dm2u0",
+	"checksum": "1:b4a0f4124dc05f0f052ca43740b5c4c5bf5f1e4743cc51015c387fe6eca53e29",
+	"operations": [
+		{
+			"addColumn": {
+				"column": {
+					"name": "viewed_by",
+					"type": "text"
+				},
+				"table": "views"
+			}
+		}
+	]
 }
