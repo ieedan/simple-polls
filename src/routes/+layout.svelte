@@ -8,7 +8,7 @@
 	import { SignIn, SignOut } from '@auth/sveltekit/components';
 	import { page } from '$app/stores';
 	import * as Avatar from '$lib/components/ui/avatar';
-	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 </script>
 
 <ModeWatcher />
@@ -31,18 +31,22 @@
 					</Avatar.Root>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content sideOffset={5}>
-				  <DropdownMenu.Group>
-					<DropdownMenu.Item>My Polls</DropdownMenu.Item>
-					<DropdownMenu.Item>My UpVotes</DropdownMenu.Item>
-					<DropdownMenu.Separator/>
-					<DropdownMenu.Item>
-						<SignOut>
-							<span slot="submitButton">Logout</span>
-						</SignOut>
-					</DropdownMenu.Item>
-				  </DropdownMenu.Group>
+					<DropdownMenu.Group>
+						<DropdownMenu.Item href="/polls/my-polls" class="hover:cursor-pointer">
+							My Polls
+						</DropdownMenu.Item>
+						<DropdownMenu.Item href="/polls/participating" class="hover:cursor-pointer">
+							Participating
+						</DropdownMenu.Item>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>
+							<SignOut>
+								<span slot="submitButton">Logout</span>
+							</SignOut>
+						</DropdownMenu.Item>
+					</DropdownMenu.Group>
 				</DropdownMenu.Content>
-			  </DropdownMenu.Root>
+			</DropdownMenu.Root>
 		{:else if $page.url.pathname != '/signin'}
 			<Button href="/signin?redirectTo={encodeURIComponent($page.url.pathname + $page.url.search)}">
 				Login

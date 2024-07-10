@@ -4,11 +4,44 @@
 	import ThickArrowDown from 'svelte-radix/ThickArrowDown.svelte';
 	import { superForm } from 'sveltekit-superforms';
 	import { page } from '$app/stores';
+	import { onDestroy, onMount } from 'svelte';
+	import { browser } from '$app/environment';
+
+	const POLLING_INTERVAL = 1000;
 
 	export let data;
 
 	const { form: upvoteForm, enhance: upvoteEnhance } = superForm(data.upvoteForm);
 	const { form: downvoteForm, enhance: downvoteEnhance } = superForm(data.downvoteForm);
+
+	let pollTimeout: NodeJS.Timeout;
+
+	const getStats = async () => {
+		clearTimeout(pollTimeout);
+
+		console.log('polling');
+
+		const stats = await fetch(`/api/polls/${data.poll.id}/stats`).then((a) => a.json());
+
+		data.poll.upvotes = stats.upvotes;
+		data.poll.downvotes = stats.downvotes;
+
+		// calls recursively so that if a request hangs
+		// for a while it will maintain the interval between getting data
+		pollTimeout = setTimeout(getStats, POLLING_INTERVAL);
+	};
+
+	// clear timeout on unmount
+	onDestroy(() => {
+		clearTimeout(pollTimeout);
+	});
+
+	onMount(() => {
+		// prevents polling start while preloading
+		if (browser) {
+			pollTimeout = setTimeout(getStats, POLLING_INTERVAL);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -27,10 +60,10 @@
 				class="flex gap-2"
 				bind:pressed={$upvoteForm.upvoted}
 				onPressedChange={(upvoted) => {
-					if (!$page.data.session) return; 
+					if (!$page.data.session) return;
 					if (upvoted) {
 						if ($downvoteForm.downvoted) {
-							$downvoteForm.downvoted = false
+							$downvoteForm.downvoted = false;
 							data.poll.downvotes -= 1;
 						}
 						data.poll.upvotes += 1;
@@ -53,10 +86,10 @@
 				class="flex gap-2"
 				bind:pressed={$downvoteForm.downvoted}
 				onPressedChange={(downvoted) => {
-					if (!$page.data.session) return; 
+					if (!$page.data.session) return;
 					if (downvoted) {
 						if ($upvoteForm.upvoted) {
-							$upvoteForm.upvoted = false
+							$upvoteForm.upvoted = false;
 							data.poll.upvotes -= 1;
 						}
 						data.poll.downvotes += 1;
@@ -68,7 +101,12 @@
 				<ThickArrowDown class="size-4" />
 				<span class="font-serif">{data.poll.downvotes}</span>
 			</Toggle>
-			<input type="checkbox" bind:checked={$downvoteForm.downvoted} class="hidden" name="downvoted" />
+			<input
+				type="checkbox"
+				bind:checked={$downvoteForm.downvoted}
+				class="hidden"
+				name="downvoted"
+			/>
 			<input name="submittedBy" class="hidden" bind:value={$downvoteForm.submittedBy} />
 			<input name="pollId" class="hidden" bind:value={$downvoteForm.pollId} />
 		</form>
