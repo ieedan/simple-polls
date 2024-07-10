@@ -9,6 +9,7 @@
 	import { page } from '$app/stores';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { GithubLogo } from 'svelte-radix';
 </script>
 
 <ModeWatcher />
@@ -52,7 +53,17 @@
 				Login
 			</Button>
 		{/if}
+		<div class="flex place-items-center gap-2">
+			<Button
+				variant="outline"
+				size="icon"
+				target="_blank"
+				href="https://github.com/ieedan/simple-polls"
+			>
+				<GithubLogo class="size-5" />
+			</Button>
 
-		<LightSwitch />
+			<LightSwitch />
+		</div>
 	</div>
 </footer>
