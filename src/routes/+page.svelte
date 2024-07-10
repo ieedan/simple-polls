@@ -22,9 +22,7 @@
 
 <section class="flex flex-col place-items-center justify-center gap-4 px-6 pt-60">
 	<h1 class="text-center text-5xl font-bold sm:text-7xl">Simple Polls</h1>
-	<p class="text-center text-muted-foreground sm:text-lg">
-		End your arguments democratically.
-	</p>
+	<p class="text-center text-muted-foreground sm:text-lg">End your arguments democratically.</p>
 	<form
 		class="flex w-full place-items-center justify-center"
 		on:submit|preventDefault={() => {

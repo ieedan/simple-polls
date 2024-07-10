@@ -129,13 +129,14 @@ export const actions = {
 
 		const pollId = await db
 			.insertInto('polls')
-			.values({ content: form.data.content, created_by: form.data.createdBy })
+			// have to add empty id here to fix TS error
+			.values({ id: '', content: form.data.content, created_by: form.data.createdBy })
 			.returning(['id'])
 			.executeTakeFirst();
 
-        if (!pollId) {
-            return fail(400, { form });
-        }
+		if (!pollId) {
+			return fail(400, { form });
+		}
 
 		throw redirect(303, `/polls/${pollId.id}`);
 	}

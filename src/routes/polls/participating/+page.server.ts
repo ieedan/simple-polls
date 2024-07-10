@@ -12,7 +12,7 @@ export const load = async ({ locals, url }) => {
 
 	const polls = await db
 		.selectFrom('polls')
-		.select(['polls.id','polls.content','polls.downvotes', 'polls.upvotes'])
+		.select(['polls.id', 'polls.content', 'polls.downvotes', 'polls.upvotes'])
 		.where('polls.content', 'ilike', `%${search}%`)
 		.innerJoin('votes', (join) =>
 			join.onRef('votes.poll_id', '=', 'polls.id').on('votes.created_by', '=', session.user.userId)

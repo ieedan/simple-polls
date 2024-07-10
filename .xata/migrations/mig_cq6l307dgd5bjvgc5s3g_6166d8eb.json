@@ -1,16 +1,16 @@
 {
-  "id": "mig_cq6l307dgd5bjvgc5s3g",
-  "parentID": "mig_cq6l2hophjmnfer5f7dg",
-  "checksum": "1:6166d8eb94460b2463fcc6193a6371c85848bea1222fea9d844e96bebea0731d",
-  "operations": [
-    {
-      "addColumn": {
-        "column": {
-          "name": "upvoted_by",
-          "type": "string"
-        },
-        "table": "upvotes"
-      }
-    }
-  ]
+	"id": "mig_cq6l307dgd5bjvgc5s3g",
+	"parentID": "mig_cq6l2hophjmnfer5f7dg",
+	"checksum": "1:6166d8eb94460b2463fcc6193a6371c85848bea1222fea9d844e96bebea0731d",
+	"operations": [
+		{
+			"addColumn": {
+				"column": {
+					"name": "upvoted_by",
+					"type": "string"
+				},
+				"table": "upvotes"
+			}
+		}
+	]
 }

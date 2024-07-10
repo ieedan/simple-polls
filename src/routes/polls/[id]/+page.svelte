@@ -14,6 +14,7 @@
 	const { form: upvoteForm, enhance: upvoteEnhance } = superForm(data.upvoteForm);
 	const { form: downvoteForm, enhance: downvoteEnhance } = superForm(data.downvoteForm);
 
+	// eslint-disable-next-line no-undef
 	let pollTimeout: NodeJS.Timeout;
 
 	const getStats = async () => {

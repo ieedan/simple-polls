@@ -57,13 +57,17 @@
 		{#if data.polls.length == 0 && data.search == ''}
 			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
 				<h2 class="text-3xl font-bold">You aren't participating in any polls yet</h2>
-				<p class="text-muted-foreground">To start participating you can check out existing polls.</p>
+				<p class="text-muted-foreground">
+					To start participating you can check out existing polls.
+				</p>
 				<Button href="/polls">See Polls</Button>
 			</div>
 		{:else if data.polls.length == 0}
 			<div class="flex flex-col place-items-center justify-center gap-2 py-10">
 				<h2 class="text-3xl font-bold">No polls matched your search</h2>
-				<p class="text-muted-foreground">They may be out there you just haven't participated in them yet.</p>
+				<p class="text-muted-foreground">
+					They may be out there you just haven't participated in them yet.
+				</p>
 			</div>
 		{:else}
 			<div class="flex flex-col gap-2 py-4">
