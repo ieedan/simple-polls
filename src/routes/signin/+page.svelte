@@ -7,7 +7,7 @@
 
 <div class="flex h-svh place-items-center justify-center">
 	<div class="flex w-full max-w-[250px] flex-col gap-2 sm:max-w-[300px]">
-		<h1 class="text-center text-2xl font-bold">Log in to Not Alone</h1>
+		<h1 class="text-center text-2xl font-bold">Log in to Simple Polls</h1>
 		<section class="h-2"></section>
 		{#each providerMap as provider}
 			<SignIn provider={provider.id} signInPage="signin" className="w-full">
